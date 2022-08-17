@@ -30,13 +30,21 @@ def vote(request, question):
     try:
         q1 = Question(question_text=question, pub_date=timezone.now())
         q1.save()
-        print(f"id is {q1.id}")
+        #print(q1.__dict__)        
+
+        time.sleep(5)
         
-        #Question.objects.filter(id=id).update(question_text='modified')
-        
-        q1.id = None 
-        q1.question_text = 'modified'
-        q1.save()
+        #q1.question_text="modified"
+        id = q1.id
+
+
+        Question.objects.filter(id=id).update(question_text='modified')
+        #q11.question_text = 'modifiedAgain'
+        #q11.save()
+
+        #q2_text = str(question) + 'q2'
+        #q2 = Question(question_text=q2_text, pub_date="")
+        #q2.save()
 
         transaction.commit()
     except:
